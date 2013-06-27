@@ -1,0 +1,9 @@
+body {
+  width: 120px;
+  padding: 0px 5px;
+}
+
+.name {
+  width: 100px;
+  float: left;
+}

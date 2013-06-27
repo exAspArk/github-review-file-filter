@@ -1,0 +1,17 @@
+{
+  // Required
+  "name": "Github Pull Request Filter",
+  "version": "0.1",
+  "manifest_version": 2,
+
+  // Recommended
+  "description": "This extension filtering files by their extensions",
+  "icons": { "128": "github.png" },
+
+  "browser_action": {
+    "default_icon": "github.png",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": ["tabs", "http://github.com/*/pull/*/files", "https://github.com/*/pull/*/files"]
+}

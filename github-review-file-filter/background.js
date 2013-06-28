@@ -1,10 +1,12 @@
 chrome.tabs.onActivated.addListener(function(activeInfo) {
     chrome.tabs.getSelected(null,function(tab) {
-        changeIcon(tab);
+        changeIconVisibility(tab);
     });
 });
 
-function changeIcon(tab) {
+// ----------------------------------------------------------------------------
+
+function changeIconVisibility(tab) {
     var iconPath;
 
     if (isValidUrl(tab.url)) {

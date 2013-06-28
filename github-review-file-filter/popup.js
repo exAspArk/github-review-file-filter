@@ -5,15 +5,17 @@ window.onload = function() {
     });
 };
 
+// ----------------------------------------------------------------------------
+
 // get allFileExtensionsInfo from file_extensions.js
 chrome.extension.onMessage.addListener(function(allFileExtensionsInfo) {
     if (allFileExtensionsInfo.length > 0) {
         document.getElementById('title').innerHTML = 'File Filter:';
 
-        var divFileExtensions = document.getElementById('fileExtensions');
+        var fileExtensionElements = document.getElementById('fileExtensions');
         for (var i = 0; i < allFileExtensionsInfo.length; i++) {
             var divCheckbox = createFileExtensionCheckbox(allFileExtensionsInfo[i]);
-            divFileExtensions.appendChild(divCheckbox);
+            fileExtensionElements.appendChild(divCheckbox);
         }
     }
 });

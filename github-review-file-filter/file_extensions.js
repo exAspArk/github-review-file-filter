@@ -1,8 +1,8 @@
 var allFiles          = getAllElementsWithAttribute('class', 'meta');
-var allFileExtensions = getAllFileExtensions(allFiles);
+var allFileExtensionsInfo = getAllFileExtensionsInfo(allFiles);
 
-// send allFileExtensions to popup.js
-chrome.extension.sendMessage(allFileExtensions);
+// send allFileExtensionsInfo to popup.js
+chrome.extension.sendMessage(allFileExtensionsInfo);
 
 // ----------------------------------------------------------------------------
 
@@ -43,15 +43,33 @@ function getAllElementsWithAttribute(attribute, value) {
     return matchingElements;
 }
 
-function getAllFileExtensions(allFiles) {
-    var allFileExtensions = [];
+function getAllFileExtensionsInfo(allFiles) {
+    var allFileExtensionsInfo = [];
     for (var i = 0; i < allFiles.length; i++) {
-        var fileExtension = getFileExtension(allFiles[i]);
-        if (allFileExtensions.indexOf(fileExtension) === -1) {
-            allFileExtensions.push(fileExtension);
+        var isVisible         = allFiles[i].parentNode.style.display !== 'none';
+        var fileExtension     = getFileExtension(allFiles[i]);
+        var fileExtensionInfo = findFileExtensionInfo(allFileExtensionsInfo, fileExtension);
+
+        if (fileExtensionInfo) {
+            fileExtensionInfo.count++;
+            fileExtensionInfo.isVisible = isVisible;
+        }
+        else {
+            fileExtensionInfo = { name: fileExtension, isVisible: isVisible, count: 1 }
+            allFileExtensionsInfo.push(fileExtensionInfo);
         }
     }
-    return allFileExtensions;
+    return allFileExtensionsInfo;
+}
+
+// fileExtensionInfo: { name: ".rb", isVisible: true, count: 3 }
+function findFileExtensionInfo(allFileExtensionsInfo, fileExtension) {
+    for (var i = 0; i < allFileExtensionsInfo.length; i++) {
+        if (allFileExtensionsInfo[i].name === fileExtension) {
+            return allFileExtensionsInfo[i];
+        }
+    }
+    return null;
 }
 
 function getFileExtension(divFile) {

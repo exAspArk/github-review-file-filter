@@ -17,8 +17,6 @@ It is a Chrome extension, that allows you to filter files in Pull Request depend
 
 #### TODO
 
-* Show count of files grouped by extension;
-* Save previous state of popup on each tab;
 * Disable extension if current page is not a GitHub;
 * Make it more stylish;
 * Add settings (default active file extensions).

@@ -17,6 +17,5 @@ It is a Chrome extension, that allows you to filter files in Pull Request depend
 
 #### TODO
 
-* Disable extension if current page is not a GitHub;
 * Make it more stylish;
 * Add settings (default active file extensions).

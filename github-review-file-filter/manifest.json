@@ -4,12 +4,20 @@
   "manifest_version": 2,
 
   "description": "This extension filtering files by their extensions",
-  "icons": { "128": "github.png" },
+  "icons": { "128": "active.png" },
 
   "browser_action": {
-    "default_icon": "github.png",
+    "default_icon": "active.png",
     "default_popup": "popup.html"
   },
 
-  "permissions": ["tabs", "http://github.com/*/pull/*/files", "https://github.com/*/pull/*/files"]
+  "permissions": [
+    "tabs",
+    "http://github.com/*/pull/*/files",
+    "https://github.com/*/pull/*/files"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
 }

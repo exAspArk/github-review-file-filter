@@ -1,10 +1,8 @@
 {
-  // Required
-  "name": "Github Pull Request Filter",
+  "name": "Github Review File Filter",
   "version": "0.1",
   "manifest_version": 2,
 
-  // Recommended
   "description": "This extension filtering files by their extensions",
   "icons": { "128": "github.png" },
 

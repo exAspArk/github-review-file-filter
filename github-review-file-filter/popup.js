@@ -1,9 +1,3 @@
-// TODO
-// - disable extension if not github
-// - make it more pretty
-// - add documentation
-// - add settings (default active file extensions)
-
 // execute file_extensions.js in the current tab
 window.onload = function() {
     chrome.tabs.getSelected(null, function(tab) {
@@ -20,6 +14,8 @@ chrome.extension.onMessage.addListener(function(allFileExtensions) {
         divFileExtensions.appendChild(divCheckbox);
     }
 });
+
+// ----------------------------------------------------------------------------
 
 function createFileExtensionCheckbox(name) {
     var div      = document.createElement('div');
@@ -38,7 +34,7 @@ function createFileExtensionCheckbox(name) {
 
     checkbox.onchange = function() {
         chrome.tabs.getSelected(null, function(tab) {
-            chrome.tabs.sendMessage(tab.id, { action: 'checkboxToggled', fileExtension: checkbox.id, visible: checkbox.checked }, function(response) {});
+            chrome.tabs.sendMessage(tab.id, { action: 'checkboxToggled', fileExtension: checkbox.id, visible: checkbox.checked });
         });
     };
 

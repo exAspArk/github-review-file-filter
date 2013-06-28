@@ -6,6 +6,7 @@ chrome.extension.sendMessage(allFileExtensions);
 
 // ----------------------------------------------------------------------------
 
+// action if checkbox with file extension was toggled
 chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
     if(message.action === 'checkboxToggled') {
         for (var i = 0; i < allFiles.length; i++) {
@@ -17,7 +18,7 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
     }
 });
 
-function toggleFileVisibility(file, visible) {
+function toggleFileVisibility(divFile, visible) {
     var display;
     if (visible) {
         display = 'block';
@@ -26,8 +27,7 @@ function toggleFileVisibility(file, visible) {
         display = 'none';
     }
 
-    var parentNode = file.parentNode;
-    parentNode.style.display = display;
+    divFile.parentNode.style.display = display;
 }
 
 // ----------------------------------------------------------------------------
@@ -54,8 +54,8 @@ function getAllFileExtensions(allFiles) {
     return allFileExtensions;
 }
 
-function getFileExtension(file) {
-    var fileName = file.getAttribute('data-path');
+function getFileExtension(divFile) {
+    var fileName = divFile.getAttribute('data-path');
 
     if (fileName.indexOf('.') !== -1) {
         return '.' + fileName.split('.').pop();
